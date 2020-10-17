@@ -10,10 +10,16 @@ import SwiftUI
 struct GroceriesView: View {
     @ObservedObject var viewModel = GroceriesViewModel()
     
+    func onSelect(grocery: GroceryItem) {
+        print("You just click")
+        
+        // Display popup
+    }
+    
     var body: some View {
         NavigationView {
             List(viewModel.groceries, id: \.self) { grocery in
-                Text(grocery.name)
+                Checkbox(grocery: grocery, callback: onSelect)
             }
             .navigationBarTitle(Text("Groceries"))
         }

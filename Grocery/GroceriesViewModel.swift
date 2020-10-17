@@ -21,12 +21,12 @@ class GroceriesViewModel: ObservableObject {
         
         switch status {
         case .authorized:
-            print("Ok")
+            print("Reminder permission already granted")
             self.getReminders()
         case .denied:
-            print("NOk")
+            print("Reminder permission denied")
         case .notDetermined:
-            print("NOk")
+            print("Reminder permission not determined")
             requestAccess()
         default:
             print("NOk")
@@ -36,7 +36,7 @@ class GroceriesViewModel: ObservableObject {
     private func requestAccess() {
         eventStore.requestAccess(to: .reminder) { (granted, error) in
             if granted {
-                print("Access granted")
+                print("Reminder permission granted")
                 self.getReminders()
             }
         }
